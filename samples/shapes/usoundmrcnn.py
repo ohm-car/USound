@@ -30,7 +30,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 # Root directory of the project
 # pdir = "/home/omkar/USound3D_1/Mask_RCNN-master"
 pdir = "/nfs/rs/oates/users/omkark1/USound/"
-ROOT_DIR = os.path.abspath(pdir + "Source/Mask_RCNN-master")
+ROOT_DIR = os.path.abspath(pdir + "Source/USound")
 
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
