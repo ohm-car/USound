@@ -2,8 +2,8 @@
 
 #SBATCH --job-name=mrc
 #SBATCH --mail-user=omkark1@umbc.edu
-#SBATCH --mem=10G
-#SBATCH --gres=gpu:1
+#SBATCH --mem=20G
+#SBATCH --gres=gpu:2
 #SBATCH --time=2-1:00:00
 #SBATCH --error=mrc.err
 #SBATCH --output=mrc.out
