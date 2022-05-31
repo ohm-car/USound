@@ -563,10 +563,10 @@ elif init_with == "last":
 # Passing layers="heads" freezes all layers except the head
 # layers. You can also pass a regular expression to select
 # which layers to train by name pattern.
-model.train(dataset_train, dataset_val, 
-            learning_rate=config.LEARNING_RATE, 
-            epochs=4, 
-            layers='heads')
+# model.train(dataset_train, dataset_val, 
+#             learning_rate=config.LEARNING_RATE, 
+#             epochs=4, 
+#             layers='heads')
 
 
 # In[ ]:
@@ -576,10 +576,10 @@ model.train(dataset_train, dataset_val,
 # # Passing layers="all" trains all layers. You can also 
 # # pass a regular expression to select which layers to
 # # train by name pattern.
-# model.train(dataset_train, dataset_val, 
-#             learning_rate=config.LEARNING_RATE / 10,
-#             epochs=2, 
-#             layers="all")
+model.train(dataset_train, dataset_val, 
+            learning_rate=config.LEARNING_RATE / 10,
+            epochs=200, 
+            layers="all")
 
 
 # In[ ]:
