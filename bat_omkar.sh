@@ -9,4 +9,4 @@
 #SBATCH --output=mrc.out
 
 source activate mrcnn
-python Mask_RCNN-master/samples/shapes/usoundmrcnn.py
+python /nfs/rs/oates/users/omkark1/USound/Source/USound/Mask_RCNN-master/samples/shapes/usoundmrcnn.py
