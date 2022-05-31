@@ -380,7 +380,7 @@ class VidFrameDataset(utils.Dataset):
         
         if(image_id < 2550):
             mask = cv2.imread(pdir + 'Data/Masks_Train/' + str(image_id) + '.png', 0)
-        else if(image_id >= 2550 and image_id < 2694):
+        elif(image_id >= 2550 and image_id < 2694):
             mask = cv2.imread(pdir + 'Data/Masks_Val/' + str(image_id) + '.png', 0)
 #         mask = cv2.imread('demo_000An/' + str(image_id) + '_1.png', 0)
 #         if os.path.isfile('demo_000An/' + str(image_id) + '_2.png'):
