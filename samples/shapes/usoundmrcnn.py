@@ -109,7 +109,7 @@ class VidConfig(Config):
     # Train on 1 GPU and 8 images per GPU. We can put multiple images on each
     # GPU because the images are small. Batch size is 8 (GPUs * images/GPU).
     GPU_COUNT = 1
-    IMAGES_PER_GPU = 16
+    IMAGES_PER_GPU = 12
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1  # background + 1 shape
@@ -578,7 +578,7 @@ elif init_with == "last":
 # # train by name pattern.
 model.train(dataset_train, dataset_val, 
             learning_rate=config.LEARNING_RATE / 10,
-            epochs=200, 
+            epochs=20, 
             layers="all")
 
 
