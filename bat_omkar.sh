@@ -4,7 +4,6 @@
 #SBATCH --mail-user=omkark1@umbc.edu
 #SBATCH --mem=30G
 #SBATCH --gres=gpu:3
-#SBATCH --time=2-1:00:00
 #SBATCH --error=mrc.err
 #SBATCH --output=mrc.out
 
