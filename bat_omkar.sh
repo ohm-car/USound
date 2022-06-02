@@ -3,7 +3,8 @@
 #SBATCH --job-name=mrc
 #SBATCH --mail-user=omkark1@umbc.edu
 #SBATCH --mem=30G
-#SBATCH --gres=gpu:3
+#SBATCH --gres=gpu:8
+#SBATCH --constraint=rtx_6000
 #SBATCH --error=mrc.err
 #SBATCH --output=mrc.out
 
