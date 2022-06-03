@@ -2,10 +2,10 @@
 
 #SBATCH --job-name=mrc
 #SBATCH --mail-user=omkark1@umbc.edu
-#SBATCH --mem=180G
+#SBATCH --mem=80G
 #SBATCH --gres=gpu:8
 #SBATCH --time=3-12:00:00
-#SBATCH --constraint=rtx_6000
+#SBATCH --constraint=rtx_2080
 #SBATCH --error=mrc2.err
 #SBATCH --output=mrc2.out
 
