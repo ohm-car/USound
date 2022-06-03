@@ -108,7 +108,7 @@ class VidConfig(Config):
 
     # Train on 1 GPU and 8 images per GPU. We can put multiple images on each
     # GPU because the images are small. Batch size is 8 (GPUs * images/GPU).
-    GPU_COUNT = 8
+    GPU_COUNT = 1
     IMAGES_PER_GPU = 8
 
     # Number of classes (including background)
@@ -578,7 +578,7 @@ elif init_with == "last":
 # # train by name pattern.
 model.train(dataset_train, dataset_val, 
             learning_rate=config.LEARNING_RATE / 10,
-            epochs=200, 
+            epochs=5, 
             layers="all")
 
 
@@ -588,7 +588,7 @@ model.train(dataset_train, dataset_val,
 # Save weights
 # Typically not needed because callbacks save after every epoch
 # Uncomment to save manually
-model_path = os.path.join(pdir + 'Models/', "mask_rcnn_shapes.h5")
+model_path = os.path.join(pdir + 'Models_L/', "mask_rcnn_shapes.h5")
 model.keras_model.save_weights(model_path)
 
 
