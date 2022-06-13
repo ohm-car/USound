@@ -390,7 +390,7 @@ class VidFrameDataset(utils.Dataset):
         mask = np.expand_dims(mask, axis = 2)
         info = self.image_info[image_id]
 #         shapes = info['shapes']
-        shapes = ('ellipse', [128, 0, 0], None)
+        shapes = ('ellipse', [255, 255, 255], None)
         count = len(shapes)
 #         mask = np.zeros([info['height'], info['width'], count], dtype=np.uint8)
 #         for i, (shape, _, dims) in enumerate(info['shapes']):
