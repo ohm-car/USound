@@ -43,7 +43,7 @@ from mrcnn.model import log
 # get_ipython().run_line_magic('matplotlib', 'inline')
 
 # Directory to save logs and trained model
-MODEL_DIR = os.path.join(pdir + "Models_LR/", "logs")
+MODEL_DIR = os.path.join(pdir + "Models_LW/", "logs")
 
 # Local path to trained weights file
 COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
@@ -390,7 +390,7 @@ class VidFrameDataset(utils.Dataset):
         mask = np.expand_dims(mask, axis = 2)
         info = self.image_info[image_id]
 #         shapes = info['shapes']
-        shapes = ('ellipse', [128, 0, 0], None)
+        shapes = ('ellipse', [255, 255, 255], None)
         count = len(shapes)
 #         mask = np.zeros([info['height'], info['width'], count], dtype=np.uint8)
 #         for i, (shape, _, dims) in enumerate(info['shapes']):
