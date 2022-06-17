@@ -113,6 +113,9 @@ class VidConfig(Config):
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1  # background + 1 shape
+    
+    #We use a resnet152 backbone!!!!!
+    BACKBONE = "resnet152"
 
     # Use small images for faster training. Set the limits of the small side
     # the large side, and that determines the image shape.
