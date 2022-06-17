@@ -43,7 +43,7 @@ from mrcnn.model import log
 # get_ipython().run_line_magic('matplotlib', 'inline')
 
 # Directory to save logs and trained model
-MODEL_DIR = os.path.join(pdir + "Models_LW/", "logs")
+MODEL_DIR = os.path.join(pdir + "Models_MG/", "logs")
 
 # Local path to trained weights file
 COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
@@ -578,7 +578,7 @@ elif init_with == "last":
 # # train by name pattern.
 model.train(dataset_train, dataset_val, 
             learning_rate=config.LEARNING_RATE / 10,
-            epochs=1600, 
+            epochs=200, 
             layers="all")
 
 
