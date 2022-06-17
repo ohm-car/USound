@@ -591,7 +591,7 @@ model.train(dataset_train, dataset_val,
 # Save weights
 # Typically not needed because callbacks save after every epoch
 # Uncomment to save manually
-model_path = os.path.join(pdir + 'Models_L/', "mask_rcnn_shapes.h5")
+model_path = os.path.join(pdir + 'Models_MG/', "mask_rcnn_shapes.h5")
 model.keras_model.save_weights(model_path)
 
 
