@@ -1,13 +1,13 @@
 #!/bin/bash
 
-#SBATCH --job-name=mrcmg
+#SBATCH --job-name=mrcbig_t1
 #SBATCH --mail-user=omkark1@umbc.edu
-#SBATCH --mem=96G
-#SBATCH --gres=gpu:4
-#SBATCH --constraint=rtx_6000
+#SBATCH --mem=48G
+#SBATCH --gres=gpu:1
+#SBATCH --constraint=rtx_8000
 #SBATCH --time=2-22:00:00
-#SBATCH --error=mrcmg.err
-#SBATCH --output=mrcmg.out
+#SBATCH --error=mrcbig_t1.err
+#SBATCH --output=mrcbig_t1.out
 
 source activate mrcnn
 python /nfs/rs/oates/users/omkark1/USound/Source/USound/samples/shapes/usoundmrcnn.py
