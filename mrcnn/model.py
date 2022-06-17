@@ -8,7 +8,7 @@ Written by Waleed Abdulla
 """
 
 """
-Lines changed currently: 1284, 2380, 2345-2348
+Lines changed currently: 1284, 2380
 """
 
 import os
@@ -83,7 +83,7 @@ def compute_backbone_shapes(config, image_shape):
         return config.COMPUTE_BACKBONE_SHAPE(image_shape)
 
     # Currently supports ResNet only
-    assert config.BACKBONE in ["resnet50", "resnet101"]
+    assert config.BACKBONE in ["resnet50", "resnet101", "resnet152"]
     return np.array(
         [[int(math.ceil(image_shape[0] / stride)),
             int(math.ceil(image_shape[1] / stride))]
@@ -179,7 +179,7 @@ def resnet_graph(input_image, architecture, stage5=False, train_bn=True):
         stage5: Boolean. If False, stage5 of the network is not created
         train_bn: Boolean. Train or freeze Batch Norm layers
     """
-    assert architecture in ["resnet50", "resnet101"]
+    assert architecture in ["resnet50", "resnet101", "resnet152"]
     # Stage 1
     x = KL.ZeroPadding2D((3, 3))(input_image)
     x = KL.Conv2D(64, (7, 7), strides=(2, 2), name='conv1', use_bias=True)(x)
@@ -192,12 +192,13 @@ def resnet_graph(input_image, architecture, stage5=False, train_bn=True):
     C2 = x = identity_block(x, 3, [64, 64, 256], stage=2, block='c', train_bn=train_bn)
     # Stage 3
     x = conv_block(x, 3, [128, 128, 512], stage=3, block='a', train_bn=train_bn)
-    x = identity_block(x, 3, [128, 128, 512], stage=3, block='b', train_bn=train_bn)
-    x = identity_block(x, 3, [128, 128, 512], stage=3, block='c', train_bn=train_bn)
-    C3 = x = identity_block(x, 3, [128, 128, 512], stage=3, block='d', train_bn=train_bn)
+    block_count = {"resnet50": 3, "resnet101": 3, "resnet152": 7}[architecture]
+    for i in range(block_count):
+        x = identity_block(x, 3, [128, 128, 512], stage=3, block=chr(98 + i), train_bn=train_bn)
+    C3 = x
     # Stage 4
     x = conv_block(x, 3, [256, 256, 1024], stage=4, block='a', train_bn=train_bn)
-    block_count = {"resnet50": 5, "resnet101": 22}[architecture]
+    block_count = {"resnet50": 5, "resnet101": 22, "resnet152": 35}[architecture]
     for i in range(block_count):
         x = identity_block(x, 3, [256, 256, 1024], stage=4, block=chr(98 + i), train_bn=train_bn)
     C4 = x
@@ -2342,10 +2343,10 @@ class MaskRCNN(object):
 
         # Callbacks
         callbacks = [
-#             keras.callbacks.TensorBoard(log_dir=self.log_dir,
-#                                         histogram_freq=0, write_graph=True, write_images=False),
+            keras.callbacks.TensorBoard(log_dir=self.log_dir,
+                                        histogram_freq=0, write_graph=True, write_images=False),
             keras.callbacks.ModelCheckpoint(self.checkpoint_path,
-                                            verbose=0, save_weights_only=True, save_freq = 7500),
+                                            verbose=0, save_weights_only=True),
         ]
 
         # Add custom callbacks to the list
@@ -2377,7 +2378,6 @@ class MaskRCNN(object):
             max_queue_size=100,
             workers=workers,
             use_multiprocessing=workers > 1,
-# 	    use_multiprocessing=False,
         )
         self.epoch = max(self.epoch, epochs)
 
