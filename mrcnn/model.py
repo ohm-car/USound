@@ -8,7 +8,7 @@ Written by Waleed Abdulla
 """
 
 """
-Lines changed currently: 1284, 2380
+Lines changed currently: 1284, 2380, 2348-2352
 """
 
 import os
@@ -2346,10 +2346,10 @@ class MaskRCNN(object):
 
         # Callbacks
         callbacks = [
-            keras.callbacks.TensorBoard(log_dir=self.log_dir,
-                                        histogram_freq=0, write_graph=True, write_images=False),
+#             keras.callbacks.TensorBoard(log_dir=self.log_dir,
+#                                         histogram_freq=0, write_graph=True, write_images=False),
             keras.callbacks.ModelCheckpoint(self.checkpoint_path,
-                                            verbose=0, save_weights_only=True),
+                                            verbose=0, save_weights_only=True, save_freq=3000),
         ]
 
         # Add custom callbacks to the list
