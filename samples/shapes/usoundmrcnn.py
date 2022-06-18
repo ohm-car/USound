@@ -581,7 +581,7 @@ elif init_with == "last":
 # # train by name pattern.
 model.train(dataset_train, dataset_val, 
             learning_rate=config.LEARNING_RATE / 10,
-            epochs=20, 
+            epochs=900, 
             layers="all")
 
 
@@ -591,7 +591,7 @@ model.train(dataset_train, dataset_val,
 # Save weights
 # Typically not needed because callbacks save after every epoch
 # Uncomment to save manually
-model_path = os.path.join(pdir + 'Models_MG/', "mask_rcnn_shapes.h5")
+model_path = os.path.join(pdir + 'Models_MG/', "mask_rcnn_shapes_F.h5")
 model.keras_model.save_weights(model_path)
 
 
