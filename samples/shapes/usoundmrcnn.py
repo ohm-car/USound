@@ -581,7 +581,7 @@ elif init_with == "last":
 # # train by name pattern.
 model.train(dataset_train, dataset_val, 
             learning_rate=config.LEARNING_RATE / 8,
-            epochs=1800, 
+            epochs=2100, 
             layers="all")
 
 
