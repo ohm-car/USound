@@ -115,7 +115,7 @@ class VidConfig(Config):
     NUM_CLASSES = 1 + 1  # background + 1 shape
     
     #We use a resnet152 backbone!!!!!
-    BACKBONE = "resnet152"
+#     BACKBONE = "resnet152"
 
     # Use small images for faster training. Set the limits of the small side
     # the large side, and that determines the image shape.
@@ -376,24 +376,30 @@ class VidFrameDataset(utils.Dataset):
             return info["shapes"]
         else:
             super(self.__class__).image_reference(self, image_id)
-
-    def load_mask(self, image_id):
+def load_mask(self, image_id):
         """Generate instance masks for shapes of the given image ID.
         """
         
         if(image_id < 2550):
-            mask = cv2.imread(pdir + 'Data/Masks_Train/' + str(image_id) + '.png', 0)
+            tmp_mask = cv2.imread(ddir + 'Masks_Train/' + str(image_id) + '.png', -1)
         elif(image_id >= 2550 and image_id < 2694):
-            mask = cv2.imread(pdir + 'Data/Masks_Val/' + str(image_id) + '.png', 0)
+            tmp_mask = cv2.imread(ddir + 'Masks_Val/' + str(image_id) + '.png', -1)
 #         mask = cv2.imread('demo_000An/' + str(image_id) + '_1.png', 0)
 #         if os.path.isfile('demo_000An/' + str(image_id) + '_2.png'):
 #             mask = np.stack((mask, cv2.imread('demo_000An/' + str(image_id) + '_2.png', 0)), axis=-1)
 #         else:
 #             mask = np.expand_dims(mask, axis = 2)
+        mask = np.sum(tmp_mask, axis = 2)
+#     np.zeros((tmp_mask.shape[0], tmp_mask.shape[1], 1))
+    
+        mask = mask == 765
+
+        print("before expand dims", mask.shape)
         mask = np.expand_dims(mask, axis = 2)
+        print("after expand dims", mask.shape)
         info = self.image_info[image_id]
 #         shapes = info['shapes']
-        shapes = ('ellipse', [128, 0, 0], None)
+        shapes = ('ellipse', [255, 255, 255], None)
         count = len(shapes)
 #         mask = np.zeros([info['height'], info['width'], count], dtype=np.uint8)
 #         for i, (shape, _, dims) in enumerate(info['shapes']):
