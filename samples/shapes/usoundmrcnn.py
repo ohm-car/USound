@@ -381,9 +381,9 @@ class VidFrameDataset(utils.Dataset):
         """
         
         if(image_id < 2550):
-            tmp_mask = cv2.imread(pdir + 'Masks_Train/' + str(image_id) + '.png', -1)
+            tmp_mask = cv2.imread(pdir + 'Data/Masks_Train/' + str(image_id) + '.png', -1)
         elif(image_id >= 2550 and image_id < 2694):
-            tmp_mask = cv2.imread(pdir + 'Masks_Val/' + str(image_id) + '.png', -1)
+            tmp_mask = cv2.imread(pdir + 'Data/Masks_Val/' + str(image_id) + '.png', -1)
 #         mask = cv2.imread('demo_000An/' + str(image_id) + '_1.png', 0)
 #         if os.path.isfile('demo_000An/' + str(image_id) + '_2.png'):
 #             mask = np.stack((mask, cv2.imread('demo_000An/' + str(image_id) + '_2.png', 0)), axis=-1)
@@ -394,9 +394,9 @@ class VidFrameDataset(utils.Dataset):
     
         mask = mask == 765
 
-        print("before expand dims", mask.shape)
+#         print("before expand dims", mask.shape)
         mask = np.expand_dims(mask, axis = 2)
-        print("after expand dims", mask.shape)
+#         print("after expand dims", mask.shape)
         info = self.image_info[image_id]
 #         shapes = info['shapes']
         shapes = ('ellipse', [255, 255, 255], None)
