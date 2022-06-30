@@ -2,7 +2,7 @@
 
 #SBATCH --job-name=mrcrn101c
 #SBATCH --mail-user=omkark1@umbc.edu
-#SBATCH --mem=24G
+#SBATCH --mem=32G
 #SBATCH --gres=gpu:1
 #SBATCH --constraint=rtx_6000
 #SBATCH --time=8-00:00:00
